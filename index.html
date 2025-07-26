@@ -13,10 +13,11 @@
       padding: 20px;
     }
 
+    /* ✅ تعديل هنا فقط: position من fixed إلى absolute */
     .inline-logo {
       width: 60px;
       height: 60px;
-      position: fixed;
+      position: absolute;
       top: 20px;
       left: 20px;
       background-color: #00BFFF;
@@ -55,16 +56,29 @@
     }
 
     .station {
-      background-color: #8B0000; /* لون أحمر داكن */
+      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet, red);
+      background-size: 1500% 1500%;
+      animation: rainbowBox 8s ease infinite;
       border-radius: 20px;
       padding: 20px;
       margin: 15px auto;
       max-width: 400px;
       box-shadow: 0 0 12px #00000088;
+      transition: background 1s ease-in-out;
+    }
+
+    @keyframes rainbowBox {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .station h3 {
-      color: white;
+      background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+      background-size: 400% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowText 6s ease-in-out infinite;
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 10px;
@@ -72,6 +86,12 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
+    }
+
+    @keyframes rainbowText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .section-title {
