@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>📻 الإذاعة المباشرة</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>📻 البث المباشر</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      background-color: #000;
+      background-color: #111;
       color: #fff;
       font-family: 'Arial', sans-serif;
       display: flex;
@@ -15,37 +15,44 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
-      padding: 20px;
       text-align: center;
     }
-
-    h1 {
-      font-size: 24px;
-      color: #00BFFF;
-      margin-bottom: 30px;
-    }
-
     audio {
-      width: 90%;
-      max-width: 400px;
+      margin-top: 20px;
+      width: 80%;
+    }
+    .back-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-
-  <h1>📡 يتم الآن تشغيل الإذاعة المختارة</h1>
-  <audio id="radioPlayer" controls autoplay></audio>
+  <h1>📻 البث المباشر</h1>
+  <div id="player-container">
+    <audio id="radio-player" controls autoplay>
+      <source id="audio-src" src="" type="audio/mpeg" />
+      متصفحك لا يدعم تشغيل الصوت.
+    </audio>
+  </div>
+  <button class="back-btn" onclick="window.history.back()">🔙 رجوع</button>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const streamUrl = params.get('stream');
+    const urlParams = new URLSearchParams(window.location.search);
+    const streamURL = urlParams.get('stream');
 
-    if (streamUrl) {
-      document.getElementById('radioPlayer').src = decodeURIComponent(streamUrl);
+    if (streamURL) {
+      document.getElementById("audio-src").src = streamURL;
+      document.getElementById("radio-player").load();
     } else {
-      document.body.innerHTML = '<h1 style="color:red;">❌ لا يوجد رابط بث!</h1>';
+      document.getElementById("player-container").innerHTML = "<p>❌ لم يتم العثور على رابط البث.</p>";
     }
   </script>
-
 </body>
 </html>
