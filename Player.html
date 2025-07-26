@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <title>📻 المشغل</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    .radio-container {
+      margin-top: 60px;
+    }
+    audio {
+      width: 100%;
+      max-width: 500px;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      background: #e91e63;
+      padding: 10px 20px;
+      border-radius: 30px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="station-name">📻</h1>
+  <div class="radio-container">
+    <audio id="radio-player" controls autoplay></audio>
+  </div>
+  <a href="index.html" class="back-btn">🔙 رجوع</a>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const streamUrl = urlParams.get('stream');
+    const name = urlParams.get('name');
+
+    document.getElementById('radio-player').src = decodeURIComponent(streamUrl);
+    document.getElementById('station-name').textContent = decodeURIComponent(name);
+  </script>
+</body>
+</html>
