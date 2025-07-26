@@ -1,50 +1,64 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <title>📻 المشغل</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>📻 إذاعة مباشرة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      padding: 40px;
-    }
-    .radio-container {
-      margin-top: 60px;
-    }
-    audio {
-      width: 100%;
-      max-width: 500px;
-    }
-    .back-btn {
-      display: inline-block;
-      margin-top: 30px;
-      background: #e91e63;
-      padding: 10px 20px;
-      border-radius: 30px;
+      margin: 0;
+      background-color: black;
       color: white;
-      text-decoration: none;
-      font-size: 18px;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #00ffcc;
+    }
+    iframe {
+      width: 90%;
+      height: 80px;
+      border: none;
+      background-color: #111;
+      box-shadow: 0 0 10px #00ffcc;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-  <h1 id="station-name">📻</h1>
-  <div class="radio-container">
-    <audio id="radio-player" controls autoplay></audio>
-  </div>
-  <a href="index.html" class="back-btn">🔙 رجوع</a>
+  <h1>📻 استمع الآن للبث المباشر</h1>
+  <iframe id="radioPlayer" allow="autoplay" src=""></iframe>
 
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const streamUrl = urlParams.get('stream');
-    const name = urlParams.get('name');
+    // استخراج اسم الإذاعة من رابط التحويل
+    const params = new URLSearchParams(window.location.search);
+    const station = params.get('station');
 
-    document.getElementById('radio-player').src = decodeURIComponent(streamUrl);
-    document.getElementById('station-name').textContent = decodeURIComponent(name);
+    // روابط الإذاعات
+    const streams = {
+      "radiomars": "https://radiomars.ice.infomaniak.ch/radiomars-128.mp3",
+      "medinafm": "https://stream.medinafm.ma/medinafm",
+      "mfm": "https://broadcast.mfmbroadcast.com/mfmlive",
+      "hitradio": "https://hitradio-maroc.ice.infomaniak.ch/hitradio-maroc-128.mp3",
+      "chadafm": "https://chadfm.ice.infomaniak.ch/chadfm-128.mp3",
+      "assadissa": "https://cdnamd-hls-globecast.akamaized.net/live/ramdisk/assadissa/hls_snrt/index.m3u8",
+      "medi1": "https://radio.medi1.com/Medi1Radio",
+      "lux": "https://icecast3.3rdegg.com:8000/lux",
+      "bbc": "https://stream.live.vc.bbcmedia.co.uk/bbc_arabic_radio"
+    };
+
+    // تحميل الرابط المناسب داخل المشغل
+    if (station && streams[station]) {
+      document.getElementById("radioPlayer").src = streams[station];
+    } else {
+      document.body.innerHTML = "<h1>⚠️ عذرًا، لم يتم العثور على الإذاعة المطلوبة.</h1>";
+    }
   </script>
 </body>
 </html>
