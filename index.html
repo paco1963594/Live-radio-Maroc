@@ -13,7 +13,6 @@
       padding: 20px;
     }
 
-    /* ✅ تعديل هنا فقط: position من fixed إلى absolute */
     .inline-logo {
       width: 60px;
       height: 60px;
@@ -31,6 +30,15 @@
       box-shadow: 0 0 12px #00BFFF88;
       animation: pulse 2s infinite;
       z-index: 999;
+    }
+
+    .inline-logo-label {
+      position: absolute;
+      top: 20px;
+      left: 90px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #00BFFF;
     }
 
     @keyframes pulse {
@@ -61,7 +69,7 @@
       animation: rainbowBox 8s ease infinite;
       border-radius: 20px;
       padding: 20px;
-      margin: 15px auto;
+      margin: 5px auto 30px;
       max-width: 400px;
       box-shadow: 0 0 12px #00000088;
       transition: background 1s ease-in-out;
@@ -73,25 +81,11 @@
       100% { background-position: 0% 50%; }
     }
 
-    .station h3 {
-      background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
-      background-size: 400% 100%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbowText 6s ease-in-out infinite;
+    .station-title {
       font-size: 20px;
       font-weight: bold;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-    }
-
-    @keyframes rainbowText {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      margin: 30px auto 5px;
+      color: #FFD700;
     }
 
     .section-title {
@@ -100,7 +94,6 @@
       color: #FFD700;
     }
 
-    /* الإطار الخاص باليوتيوب */
     .youtube-section {
       margin: 40px auto 20px;
       max-width: 400px;
@@ -134,6 +127,7 @@
 </head>
 <body>
   <div class="inline-logo">FM</div>
+  <div class="inline-logo-label">راديو</div>
 
   <h1>📻 إذاعات مباشرة من المغرب والعالم</h1>
 
@@ -142,20 +136,23 @@
 
   <h2 class="section-title">🌍 إذاعات عالمية</h2>
   <div id="global-stations">
+    <div class="station-title">🌐 BBC Arabic - بي بي سي عربي</div>
     <div class="station">
-      <h3>🌐 BBC Arabic - بي بي سي عربي</h3>
       <audio controls preload="none" src="https://stream.live.vc.bbcmedia.co.uk/bbc_arabic_radio"></audio>
     </div>
+
+    <div class="station-title">📰 France Info - فرانس إنفو</div>
     <div class="station">
-      <h3>📰 France Info - فرانس إنفو</h3>
       <audio controls preload="none" src="https://icecast.radiofrance.fr/franceinfo-midfi.mp3"></audio>
     </div>
+
+    <div class="station-title">🎤 إذاعة مونت كارلو الدولية</div>
     <div class="station">
-      <h3>🎤 إذاعة مونت كارلو الدولية</h3>
       <audio controls preload="none" src="https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3"></audio>
     </div>
+
+    <div class="station-title">📺 TV5MONDE - بث صوتي تجريبي</div>
     <div class="station">
-      <h3>📺 TV5MONDE - بث صوتي تجريبي</h3>
       <audio controls preload="none" src="https://stream.live.vc.bbcmedia.co.uk/bbc_world_service"></audio>
     </div>
   </div>
@@ -174,24 +171,30 @@
         const stations = await response.json();
         const radioMars = stations.find(station => station.name.toLowerCase().includes('mars'));
         if (radioMars) {
+          const title = document.createElement('div');
+          title.className = 'station-title';
+          title.textContent = `⚽ ${radioMars.name}`;
           const marsDiv = document.createElement('div');
           marsDiv.className = 'station';
           marsDiv.innerHTML = `
-            <h3>⚽ ${radioMars.name}</h3>
             <audio controls preload="none" src="${radioMars.url_resolved}"></audio>
           `;
+          container.appendChild(title);
           container.appendChild(marsDiv);
         }
 
         stations
           .filter(station => radioMars ? station.stationuuid !== radioMars.stationuuid : true)
           .forEach(station => {
+            const title = document.createElement('div');
+            title.className = 'station-title';
+            title.textContent = `📡 ${station.name}`;
             const div = document.createElement('div');
             div.className = 'station';
             div.innerHTML = `
-              <h3>📡 ${station.name}</h3>
               <audio controls preload="none" src="${station.url_resolved}"></audio>
             `;
+            container.appendChild(title);
             container.appendChild(div);
           });
       } catch (error) {
