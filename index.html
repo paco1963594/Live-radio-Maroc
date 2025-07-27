@@ -124,38 +124,106 @@ h1 {
   box-shadow: 0 0 8px #00BFFFAA;
 }
 
+/* شريط أيقونات التواصل الاجتماعي مثبت أسفل الصفحة */
+.social-icons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 10px 0;
+  box-shadow: 0 -2px 10px #0008;
+  z-index: 1000;
+}
+
+.social-icons a {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 28px;
+  text-decoration: none;
+  box-shadow: 0 0 10px #fff3;
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-weight: bold;
+  user-select: none;
+}
+
+.social-icons a.whatsapp {
+  background-color: #25D366;
+  box-shadow: 0 0 10px #25D366AA;
+}
+
+.social-icons a.facebook {
+  background-color: #1877F2;
+  box-shadow: 0 0 10px #1877F2AA;
+}
+
+.social-icons a.tiktok {
+  background-color: #000000;
+  box-shadow: 0 0 10px #000000AA;
+}
+
+.social-icons a.youtube {
+  background-color: #FF0000;
+  box-shadow: 0 0 10px #FF0000AA;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 20px #fff;
+}
   </style>
 </head>
 <body>
   <div class="inline-logo">FM</div>
-  <div class="inline-logo-label">راديو</div>  <h1>📻 إذاعات مباشرة من المغرب والعالم</h1>  <h2 class="section-title">🇲🇦 إذاعات مغربية</h2>
-  <div id="stations-ma">⏳ تحميل الإذاعات المغربية...</div>  <h2 class="section-title">🌍 إذاعات عالمية</h2>
+  <div class="inline-logo-label">راديو</div>  
+  <h1>📻 إذاعات مباشرة من المغرب والعالم</h1>  
+  <h2 class="section-title">🇲🇦 إذاعات مغربية</h2>
+  <div id="stations-ma">⏳ تحميل الإذاعات المغربية...</div>  
+  <h2 class="section-title">🌍 إذاعات عالمية</h2>
   <div id="global-stations">
     <div class="station-title">🇬🇧 BBC Arabic - بي بي سي عربي</div>
     <div class="station">
       <audio controls preload="none" src="https://stream.live.vc.bbcmedia.co.uk/bbc_arabic_radio"></audio>
-    </div><div class="station-title">🇫🇷 France Info - فرانس إنفو</div>
-<div class="station">
-  <audio controls preload="none" src="https://icecast.radiofrance.fr/franceinfo-midfi.mp3"></audio>
-</div>
-
-<div class="station-title">🇫🇷 إذاعة مونت كارلو الدولية</div>
-<div class="station">
-  <audio controls preload="none" src="https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3"></audio>
-</div>
-
-<div class="station-title">🇬🇧 TV5MONDE - بث صوتي تجريبي</div>
-<div class="station">
-  <audio controls preload="none" src="https://stream.live.vc.bbcmedia.co.uk/bbc_world_service"></audio>
-</div>
-
-  </div>  <div class="youtube-section">
+    </div>
+    <div class="station-title">🇫🇷 France Info - فرانس إنفو</div>
+    <div class="station">
+      <audio controls preload="none" src="https://icecast.radiofrance.fr/franceinfo-midfi.mp3"></audio>
+    </div>
+    <div class="station-title">🇫🇷 إذاعة مونت كارلو الدولية</div>
+    <div class="station">
+      <audio controls preload="none" src="https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3"></audio>
+    </div>
+    <div class="station-title">🇬🇧 TV5MONDE - بث صوتي تجريبي</div>
+    <div class="station">
+      <audio controls preload="none" src="https://stream.live.vc.bbcmedia.co.uk/bbc_world_service"></audio>
+    </div>
+  </div>  
+  <div class="youtube-section">
     <h3>الأستاذ ياسين العمري والشيخ سعيد الكملي</h3>
     <a class="youtube-link" href="https://youtube.com/@toto-n5z?si=_UzlDcVYMzN9pMkU" target="_blank" rel="noopener noreferrer">اضغط هنا</a>
-  </div>  <div class="link-section">
+  </div>  
+  <div class="link-section">
     <h3>🌍 موقع السفر العالمي</h3>
     <a class="external-link" href="https://12go.asia/?z=12574420" target="_blank" rel="noopener noreferrer">🔗 زر لزيارة 12go.asia</a>
-  </div>  <script>
+  </div>  
+
+  <!-- شريط أيقونات التواصل الاجتماعي -->
+  <div class="social-icons">
+    <a class="whatsapp" href="https://wa.me/212600000000" target="_blank" title="WhatsApp">📞</a>
+    <a class="facebook" href="https://facebook.com/yourpage" target="_blank" title="Facebook">🅵</a>
+    <a class="tiktok" href="https://www.tiktok.com" target="_blank" title="TikTok">🎵</a>
+    <a class="youtube" href="https://youtube.com/@yourchannel" target="_blank" title="YouTube">▶️</a>
+  </div>
+
+  <script>
     async function loadMoroccanStations() {
       const container = document.getElementById('stations-ma');
       container.innerHTML = '';
@@ -199,5 +267,6 @@ h1 {
     }
 
     loadMoroccanStations();
-  </script></body>
+  </script>
+</body>
 </html>
