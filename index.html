@@ -29,7 +29,6 @@
       animation: pulse 2s infinite;
       z-index: 999;
     }
-
     .inline-logo-label {
       position: absolute;
       top: 15px;
@@ -38,13 +37,11 @@
       font-weight: bold;
       color: #00BFFF;
     }
-
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.08); }
       100% { transform: scale(1); }
     }
-
     h1 {
       margin-top: 100px;
       font-size: 28px;
@@ -54,13 +51,11 @@
       -webkit-text-fill-color: transparent;
       animation: rainbow 6s ease infinite;
     }
-
     @keyframes rainbow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     .station {
       background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet, red);
       background-size: 1500% 1500%;
@@ -72,26 +67,22 @@
       box-shadow: 0 0 12px #00000088;
       transition: background 1s ease-in-out;
     }
-
     @keyframes rainbowBox {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     .station-title {
       font-size: 20px;
       font-weight: bold;
       margin: 30px auto 5px;
       color: #FFD700;
     }
-
     .section-title {
       margin-top: 40px;
       font-size: 24px;
       color: #FFD700;
     }
-
     .youtube-section,
     .link-section {
       margin: 40px auto 20px;
@@ -103,7 +94,6 @@
       box-shadow: 0 0 15px #00BFFF88;
       color: #00BFFF;
     }
-
     .youtube-section h3,
     .link-section h3 {
       margin-bottom: 15px;
@@ -111,7 +101,6 @@
       font-weight: bold;
       color: #00BFFF;
     }
-
     .youtube-link,
     .external-link {
       display: inline-block;
@@ -124,8 +113,6 @@
       font-weight: bold;
       box-shadow: 0 0 8px #00BFFFAA;
     }
-
-    /* شريط أيقونات التواصل الاجتماعي متحرك عبر الشاشة */
     .social-icons {
       position: fixed;
       bottom: 0;
@@ -138,12 +125,10 @@
       z-index: 1000;
       animation: moveIcons 20s linear infinite;
     }
-
     @keyframes moveIcons {
       0% { left: 100%; }
       100% { left: -100%; }
     }
-
     .social-icons a {
       width: 50px;
       height: 50px;
@@ -158,39 +143,27 @@
       font-weight: bold;
       user-select: none;
     }
-
-    .social-icons a.whatsapp {
-      background-color: #25D366;
-      box-shadow: 0 0 10px #25D366AA;
-    }
-
-    .social-icons a.facebook {
-      background-color: #1877F2;
-      box-shadow: 0 0 10px #1877F2AA;
-    }
-
-    .social-icons a.tiktok {
-      background-color: #000000;
-      box-shadow: 0 0 10px #000000AA;
-    }
-
-    .social-icons a.youtube {
-      background-color: #FF0000;
-      box-shadow: 0 0 10px #FF0000AA;
-    }
-
-    .social-icons a:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 20px #fff;
-    }
+    .social-icons a.whatsapp { background-color: #25D366; box-shadow: 0 0 10px #25D366AA; }
+    .social-icons a.facebook { background-color: #1877F2; box-shadow: 0 0 10px #1877F2AA; }
+    .social-icons a.tiktok { background-color: #000000; box-shadow: 0 0 10px #000000AA; }
+    .social-icons a.youtube { background-color: #FF0000; box-shadow: 0 0 10px #FF0000AA; }
+    .social-icons a:hover { transform: scale(1.2); box-shadow: 0 0 20px #fff; }
   </style>
 </head>
 <body>
   <div class="inline-logo">FM</div>
   <div class="inline-logo-label">راديو</div>  
   <h1>📻 إذاعات مباشرة من المغرب والعالم</h1>  
+
+  <h2 class="section-title">🎫 <span id="booking-title">Booking. للأسفار</span></h2>
+  <div class="station">
+    <div class="station-title">booking. للأسفار</div>
+    <a class="external-link" href="https://12go.asia/?z=12574420" target="_blank" rel="noopener noreferrer">اضغط هنا لحجز تذكرتك</a>
+  </div>
+
   <h2 class="section-title">🇲🇦 إذاعات مغربية</h2>
   <div id="stations-ma">⏳ تحميل الإذاعات المغربية...</div>  
+
   <h2 class="section-title">🌍 إذاعات عالمية</h2>
   <div id="global-stations">
     <div class="station-title">🇬🇧 BBC Arabic - بي بي سي عربي</div>
@@ -202,16 +175,17 @@
     <div class="station-title">🇬🇧 TV5MONDE - بث صوتي تجريبي</div>
     <div class="station"><audio controls preload="none" src="https://stream.live.vc.bbcmedia.co.uk/bbc_world_service"></audio></div>
   </div>  
+
   <div class="youtube-section">
     <h3>الأستاذ ياسين العمري والشيخ سعيد الكملي</h3>
     <a class="youtube-link" href="https://youtube.com/@toto-n5z?si=_UzlDcVYMzN9pMkU" target="_blank" rel="noopener noreferrer">اضغط هنا</a>
   </div>  
+
   <div class="link-section">
     <h3>🌍 موقع السفر العالمي</h3>
     <a class="external-link" href="https://12go.asia/?z=12574420" target="_blank" rel="noopener noreferrer">🔗 زر لزيارة 12go.asia</a>
   </div>
 
-  <!-- شريط أيقونات التواصل الاجتماعي متحرك -->
   <div class="social-icons">
     <a class="whatsapp" href="https://wa.me/212600000000" target="_blank" title="WhatsApp">📞</a>
     <a class="facebook" href="https://facebook.com/yourpage" target="_blank" title="Facebook">🅵</a>
@@ -220,6 +194,30 @@
   </div>
 
   <script>
+    const translations = [
+      'Booking. للأسفار',
+      'Booking for Travel',
+      'Réservation pour voyages',
+      'Reservar para viajar',
+      'Prenotazione per viaggi',
+      'Reservierung für Reisen',
+      'حجز للأسفار',
+      'ブッキング 旅行用',
+      '旅行預訂',
+      'Reserva para viagens',
+      'Бронирование для путешествий',
+      '여행 예약',
+      'Κράτηση για ταξίδια',
+      'Bokning för resor',
+      'Rezervasyon Seyahat İçin'
+    ];
+    let idx = 0;
+    const bookingTitle = document.getElementById('booking-title');
+    setInterval(() => {
+      idx = (idx + 1) % translations.length;
+      bookingTitle.textContent = translations[idx];
+    }, 10000);
+
     async function loadMoroccanStations() {
       const container = document.getElementById('stations-ma');
       container.innerHTML = '';
