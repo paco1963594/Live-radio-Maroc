@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" href="radio-icon.png" sizes="192x192" />
-
   <style>
     body {
       background-color: #111;
@@ -15,7 +14,6 @@
       text-align: center;
       padding: 20px;
     }
-
     .inline-logo {
       width: 60px;
       height: 60px;
@@ -33,7 +31,6 @@
       animation: pulse 2s infinite;
       z-index: 999;
     }
-
     .inline-logo-label {
       position: absolute;
       top: 15px;
@@ -46,19 +43,16 @@
       -webkit-text-fill-color: transparent;
       animation: rainbow 6s ease infinite;
     }
-
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.08); }
       100% { transform: scale(1); }
     }
-
     @keyframes rainbow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     h1 {
       margin-top: 100px;
       font-size: 28px;
@@ -68,7 +62,6 @@
       -webkit-text-fill-color: transparent;
       animation: rainbow 6s ease infinite;
     }
-
     .station {
       background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet, red);
       background-size: 1500% 1500%;
@@ -80,26 +73,22 @@
       box-shadow: 0 0 12px #00000088;
       transition: background 1s ease-in-out;
     }
-
     @keyframes rainbowBox {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     .station-title {
       font-size: 20px;
       font-weight: bold;
       margin: 30px auto 5px;
       color: #FFD700;
     }
-
     .section-title {
       margin-top: 40px;
       font-size: 24px;
       color: #FFD700;
     }
-
     .youtube-section,
     .link-section {
       margin: 40px auto 20px;
@@ -113,7 +102,6 @@
       animation: rainbowBox 8s ease infinite;
       border: 2px solid #fff;
     }
-
     .youtube-section h3,
     .link-section h3 {
       margin-bottom: 15px;
@@ -121,7 +109,6 @@
       font-weight: bold;
       color: #FFD700;
     }
-
     .youtube-link,
     .external-link {
       display: inline-block;
@@ -134,7 +121,6 @@
       font-weight: bold;
       box-shadow: 0 0 8px #00BFFFAA;
     }
-
     .social-icons {
       position: fixed;
       bottom: 0;
@@ -147,12 +133,10 @@
       z-index: 1000;
       animation: moveIcons 20s linear infinite;
     }
-
     @keyframes moveIcons {
       0% { left: 100%; }
       100% { left: -100%; }
     }
-
     .social-icons a {
       width: 50px;
       height: 50px;
@@ -167,7 +151,6 @@
       font-weight: bold;
       user-select: none;
     }
-
     .social-icons a.whatsapp { background-color: #25D366; box-shadow: 0 0 10px #25D366AA; }
     .social-icons a.facebook { background-color: #1877F2; box-shadow: 0 0 10px #1877F2AA; }
     .social-icons a.tiktok { background-color: #000000; box-shadow: 0 0 10px #000000AA; }
@@ -227,19 +210,28 @@
   <script>
     const bookingTranslations = ["Booking. للأسفار", "احجز رحلتك معنا", "خدمة السفر", "تذاكر السفر حول العالم"];
     const radioTranslations = ["راديو FM", "إذاعات مغربية", "البث المباشر", "Radio Streaming"];
-
     let bookingIdx = 0;
     let radioIdx = 0;
-
     setInterval(() => {
       bookingIdx = (bookingIdx + 1) % bookingTranslations.length;
       document.getElementById('booking-title').textContent = bookingTranslations[bookingIdx];
     }, 10000);
-
     setInterval(() => {
       radioIdx = (radioIdx + 1) % radioTranslations.length;
       document.getElementById('radio-label').textContent = radioTranslations[radioIdx];
     }, 15000);
+
+    // ✅ الميزة المطلوبة: إيقاف بقية الإذاعات عند تشغيل واحدة
+    function handleAudioControl() {
+      const allAudio = document.querySelectorAll('audio');
+      allAudio.forEach(audio => {
+        audio.addEventListener('play', () => {
+          allAudio.forEach(other => {
+            if (other !== audio) other.pause();
+          });
+        });
+      });
+    }
 
     async function loadMoroccanStations() {
       const container = document.getElementById('stations-ma');
@@ -276,6 +268,10 @@
             container.appendChild(title);
             container.appendChild(div);
           });
+
+        // ⏺️ بعد التحميل، فعل التحكم في التشغيل
+        handleAudioControl();
+
       } catch (error) {
         container.innerHTML = '<p style="color:red;">حدث خطأ أثناء تحميل الإذاعات المغربية.</p>';
         console.error('Error loading Moroccan stations:', error);
@@ -283,6 +279,7 @@
     }
 
     loadMoroccanStations();
+    handleAudioControl(); // لتشغيل الإعداد على الإذاعات العالمية أيضاً
   </script>
 </body>
 </html>
