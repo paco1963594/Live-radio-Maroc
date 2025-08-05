@@ -4,11 +4,7 @@
   <meta charset="UTF-8" />
   <title>📻 إذاعات مباشرة</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- ✅ ربط ملف manifest -->
   <link rel="manifest" href="manifest.json" />
-
-  <!-- ✅ أيقونة التبويب -->
   <link rel="icon" type="image/png" href="radio-icon.png" sizes="192x192" />
 
   <style>
@@ -108,12 +104,14 @@
     .link-section {
       margin: 40px auto 20px;
       max-width: 400px;
-      background: #222;
-      border: 2px solid #00BFFF;
       border-radius: 20px;
       padding: 20px;
       box-shadow: 0 0 15px #00BFFF88;
-      color: #00BFFF;
+      color: #fff;
+      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet, red);
+      background-size: 1500% 1500%;
+      animation: rainbowBox 8s ease infinite;
+      border: 2px solid #fff;
     }
 
     .youtube-section h3,
@@ -121,7 +119,7 @@
       margin-bottom: 15px;
       font-size: 22px;
       font-weight: bold;
-      color: #00BFFF;
+      color: #FFD700;
     }
 
     .youtube-link,
@@ -214,6 +212,11 @@
     <a class="external-link" href="https://12go.asia/?z=12574420" target="_blank" rel="noopener noreferrer">🔗 زر لزيارة 12go.asia</a>
   </div>
 
+  <div class="link-section">
+    <h3>💸 حوّل أموالك بأمان</h3>
+    <a class="external-link" href="https://remit.ly/e2yp0xkz" target="_blank" rel="noopener noreferrer">🔗 اضغط هنا لتحويل الأموال</a>
+  </div>
+
   <div class="social-icons">
     <a class="whatsapp" href="https://wa.me/212600000000" target="_blank" title="WhatsApp">📞</a>
     <a class="facebook" href="https://facebook.com/yourpage" target="_blank" title="Facebook">🅵</a>
@@ -222,36 +225,8 @@
   </div>
 
   <script>
-    const bookingTranslations = [
-      'Booking. للأسفار',
-      'Booking for Travel',
-      'Réservation pour voyages',
-      'Reservar para viajar',
-      'Prenotazione per viaggi',
-      'Reservierung für Reisen',
-      'حجز للأسفار',
-      'ブッキング 旅行用',
-      '旅行預訂',
-      'Reserva para viagens',
-      'Бронирование для путешествий',
-      '여행 예약',
-      'Κράτηση για ταξίδια',
-      'Bokning för resor',
-      'Rezervasyon Seyahat İçin'
-    ];
-
-    const radioTranslations = [
-      'راديو FM',
-      'إذاعة مباشرة',
-      'Radio FM',
-      'راديو مباشر',
-      'Radio en direct',
-      'Live FM Radio',
-      'FM ラジオ',
-      'راديو صوتي',
-      'FM بث مباشر',
-      'FM بث حي'
-    ];
+    const bookingTranslations = ["Booking. للأسفار", "احجز رحلتك معنا", "خدمة السفر", "تذاكر السفر حول العالم"];
+    const radioTranslations = ["راديو FM", "إذاعات مغربية", "البث المباشر", "Radio Streaming"];
 
     let bookingIdx = 0;
     let radioIdx = 0;
@@ -285,13 +260,15 @@
         }
 
         stations
-          .filter(station => (!radioMars || station.stationuuid !== radioMars.stationuuid))
+          .filter(station => station.url_resolved && (!radioMars || station.stationuuid !== radioMars.stationuuid))
           .forEach(station => {
             const title = document.createElement('div');
             title.className = 'station-title';
             const nameLower = station.name.toLowerCase();
             const isReligious = ['quran', 'قرآن', 'coran', 'اسلام', 'islam', 'hadith', 'تفسير'].some(keyword => nameLower.includes(keyword));
-            const emoji = isReligious ? (nameLower.includes('quran') || nameLower.includes('قرآن') || nameLower.includes('coran') ? '📖' : '🕋') : '🇲🇦';
+            const emoji = isReligious
+              ? (nameLower.includes('quran') || nameLower.includes('قرآن') || nameLower.includes('coran') ? '📖' : '🕋')
+              : '🇲🇦';
             title.textContent = `${emoji} ${station.name}`;
             const div = document.createElement('div');
             div.className = 'station';
